@@ -1,65 +1,69 @@
-# StudentManagementSystem
-A production-grade Student Management System built with Spring Boot, showcasing enterprise-level practices including security, role management, pagination, and advanced error handling.
-User Authentication & Authorization
 
-Role-based access control (ADMIN / USER) using Spring Security
+# 🎓 Student Management System
 
-JWT-based secure login system
+A full-stack **Spring Boot** based Student Management System with robust features including **authentication**, **authorization**, **exception handling**, **role-based access**, **pagination**, and **searching**. Built following clean architecture and industry best practices.
 
-Password encryption with BCryptPasswordEncoder
+---
 
-Exception Handling
+## 🔐 User Authentication & Authorization
 
-Global exception handling using @ControllerAdvice
+- ✅ Role-based access control (`ADMIN` / `USER`) using **Spring Security**
+- 🔒 Password encryption with **BCryptPasswordEncoder**
 
-Clean and informative error responses for client-side integration
+---
 
-Input Validations
+## ❗ Exception Handling
 
-Field-level validation using Hibernate Validator (JSR-303)
+- 🧠 Global exception handling using `@ControllerAdvice`
+- 📢 Clean and informative error responses for client-side integration
 
-Automatic handling of bad requests with descriptive messages
+---
 
-Relational Mapping & Joins
+## ✅ Input Validations
 
-Entity relationships using @OneToMany, @ManyToOne, @ManyToMany
+- 📋 Field-level validation using **Hibernate Validator** 
+- ⚠️ Automatic handling of bad requests with descriptive messages
 
-Data integrity and join handling with JPA and custom queries
+---
 
-DTO and Mapping
+## 🔗 Relational Mapping & Joins
 
-Data transfer handled with DTOs
+- 🔄 Entity relationships using `@OneToMany`, `@ManyToOne`, `@ManyToMany`
+- 🔍 Data integrity and join handling with **JPA** and custom queries
 
-Seamless model-to-DTO and DTO-to-model conversions via ModelMapper
+---
 
-Pagination & Searching 🚀
+## 🧳 DTO and Mapping
 
-Pageable API endpoints
+- 🔁 Data transfer handled with DTOs
+- 🔄 Seamless model-to-DTO and DTO-to-model conversions via **ModelMapper**
 
-Dynamic searching and filtering
+---
 
-Optimized queries for performance with large data sets
+## 🚀 Pagination & Searching
 
-Clean Architecture
+- 📄 Pageable API endpoints using Spring Data
+- 🔎 Dynamic searching and filtering
+- ⚡ Optimized queries for performance with large data sets
 
-Layered structure: Controller → Service → Repository
+---
 
-Follows SOLID principles
+## 🧼 Clean Architecture
 
-📂 Tech Stack
+- 🧱 Layered structure: **Controller → Service → Repository**
+- 💡 Follows **SOLID principles**
 
-Java 17
+---
 
-Spring Boot
+## 📂 Tech Stack
 
-Spring Data JPA
+- 💻 Java 21
+- ⚙️ Spring Boot
+- 🗃️ Spring Data JPA
+- 🛡️ Spring Security 
+- 🐬 MySQL
+- 🧪 Hibernate Validator
+- 🔄 ModelMapper
+- 🧥 Lombok
 
-Spring Security + JWT
-
-MySQL
-
-Hibernate Validator
-
-ModelMapper
-
-Lombok
+---
