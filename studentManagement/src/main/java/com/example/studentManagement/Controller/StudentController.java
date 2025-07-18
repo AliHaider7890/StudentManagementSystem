@@ -45,7 +45,7 @@ public class StudentController {
         return ResponseEntity.ok(st1);
     }
 
-    @PreAuthorize("hasRole('ADMIN')") // Only ADMIN can access this endpoint
+   // @PreAuthorize("hasRole('ADMIN')") // Only ADMIN can access this endpoint
     @GetMapping("/{userId}/getAll/users")
     public ResponseEntity<List<StudentDto>> getAllStudents(
             @PathVariable("userId") Integer userId,

@@ -28,19 +28,39 @@ public class SecurityConfig {
         this.customUserDetailService = customUserDetailService;
     }
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//
+//        http
+//                .csrf(csrf -> csrf.disable())
+//                .authorizeHttpRequests(auth -> auth
+//                        .requestMatchers("/login", "/register").permitAll()
+//                        .requestMatchers("/add/v1/{userId}/getAll/users").hasRole("ADMIN")
+//                        .anyRequest().authenticated()
+//                )
+//                .httpBasic(withDefaults());
+//        return http.build();
+//    }
+@Bean
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/register").permitAll()
-                        .requestMatchers("/add/v1/{userId}/getAll/users").hasRole("ADMIN")
-                        .anyRequest().authenticated()
-                )
-                .httpBasic(withDefaults());
-        return http.build();
-    }
+    http
+            .csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(auth -> auth
+                    .requestMatchers("/register").permitAll()
+                    .requestMatchers("/add/v1/{userId}/getAll/users").hasRole("ADMIN")
+                    .anyRequest().authenticated()
+            )
+            .formLogin(withDefaults())
+            .logout(logout -> logout
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/login?logout")
+                    .permitAll()
+            );
+
+    return http.build();
+}
+
 
     @Bean
     public AuthenticationManager authenticationManager() {
