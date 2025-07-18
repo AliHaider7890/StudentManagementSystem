@@ -56,6 +56,7 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
                     .logoutUrl("/logout")
                     .logoutSuccessUrl("/login?logout")
                     .permitAll()
+                    //ABC
             );
 
     return http.build();
