@@ -87,6 +87,8 @@ public class StudentDto {
         this.facultyDto = facultyDto;
     }
 
+   // private Set<Role> roles = new HashSet<>();
+
     private Set<String> roles;
 
     public Set<String> getRoles() {
