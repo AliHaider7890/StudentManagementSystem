@@ -1,6 +1,7 @@
 package com.example.studentManagement.config;
 
 import com.example.studentManagement.Security.CustomUserDetailService;
+import com.example.studentManagement.Security.JwtAuthFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,7 +25,7 @@ public class SecurityConfig {
 
     private final CustomUserDetailService customUserDetailService;
 
-    public SecurityConfig(CustomUserDetailService customUserDetailService) {
+    public SecurityConfig(CustomUserDetailService customUserDetailService) throws Exception{
         this.customUserDetailService = customUserDetailService;
     }
 
@@ -41,27 +42,40 @@ public class SecurityConfig {
 //                .httpBasic(withDefaults());
 //        return http.build();
 //    }
-@Bean
-public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//@Bean
+//public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//
+//    http
+//            .csrf(csrf -> csrf.disable())
+//            .authorizeHttpRequests(auth -> auth
+//                    .requestMatchers("/register").permitAll()
+//                    .requestMatchers("/add/v1/{userId}/getAll/users").hasRole("ADMIN")
+//                    .anyRequest().authenticated()
+//            )
+//           .formLogin(withDefaults())
+//            .logout(logout -> logout
+//                    .logoutUrl("/logout")
+//                    .logoutSuccessUrl("/login?logout")
+//                    .permitAll()
+//                    //ABC
+//            );
+//
+//    return http.build();
+//}
 
-    http
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/register").permitAll()
-                    .requestMatchers("/add/v1/{userId}/getAll/users").hasRole("ADMIN")
-                    .anyRequest().authenticated()
-            )
-            .formLogin(withDefaults())
-            .logout(logout -> logout
-                    .logoutUrl("/logout")
-                    .logoutSuccessUrl("/login?logout")
-                    .permitAll()
-                    //ABC
-            );
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthFilter jwtAuthFilter) throws Exception {
+        http
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/auth/login", "/register").permitAll()
+                        .requestMatchers("/add/v1/{userId}/getAll/users").hasRole("ADMIN")
+                        .anyRequest().authenticated()
+                )
+                .addFilterBefore(jwtAuthFilter, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class);
 
-    return http.build();
-}
-
+        return http.build();
+    }
 
     @Bean
     public AuthenticationManager authenticationManager() {
